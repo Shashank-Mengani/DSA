@@ -10,7 +10,7 @@ public class Problems {
         System.out.println(maxVowels(s, k));
     }
 
-    //643. Maximum Average Subarray I
+    //https://leetcode.com/problems/maximum-average-subarray-i/description/I
     public static double findMaxAverage(int[] nums, int k){
 
         double maxAvg = 0;
@@ -32,7 +32,7 @@ public class Problems {
         return maxAvg / k;
     }
 
-    //1456. Maximum Number of Vowels in a Substring of Given Length
+    //https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/description/
     public static int maxVowels(String s, int k) {
 
         int countVowel = 0;
