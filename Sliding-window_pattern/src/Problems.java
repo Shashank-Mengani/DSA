@@ -5,9 +5,12 @@ public class Problems {
 //        int k = 4;
 //        System.out.println(findMaxAverage(nums, k));
 
-        String s = "leetcode";
-        int k = 3;
-        System.out.println(maxVowels(s, k));
+//        String s = "leetcode";
+//        int k = 3;
+//        System.out.println(maxVowels(s, k));
+
+        String s = "xyzzaz";
+        System.out.println(countGoodSubstrings(s));
     }
 
     //https://leetcode.com/problems/maximum-average-subarray-i/description/I
@@ -58,5 +61,50 @@ public class Problems {
 
     private static boolean isVowel(char ch){
         return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    }
+
+    //https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/description/
+    public static int countGoodSubstrings(String s){
+
+        if(s.length() < 3){
+            return 0;
+        }
+
+        int[] freq = new int[26];  // New frequency array
+        int distinct = 0;
+        int ans = 0;
+
+        //first window and Expand first 3 characters
+        for (int i = 0; i < 3; i++) {
+            int index = s.charAt(i) - 'a';
+            if (freq[index] == 0){
+                distinct++;
+            }
+            freq[index]++;
+        }
+        if (distinct == 3){
+            ans++;
+        }
+
+        //slide the window
+        for (int j = 3; j < s.length(); j++) {
+            // Shrink: remove leftmost character
+            int remove = s.charAt(j - 3) - 'a';
+            freq[remove]--;
+            if (freq[remove] == 0){
+                distinct--;
+            }
+
+            // Expand: add new rightmost character
+            int add = s.charAt(j) - 'a';
+            if (freq[add] == 0){
+                distinct++;
+            }
+            freq[add]++;
+            if (distinct == 3){
+                ans++;
+            }
+        }
+        return ans;
     }
 }
