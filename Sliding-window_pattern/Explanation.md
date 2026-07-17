@@ -55,3 +55,21 @@ Maintain a variable-size sliding window.
 ## Complexity
 Time: O(n),
 Space: O(1) (using frequency array of size 128)
+
+# 5. Permutation in String
+## Idea
+Maintain a fixed-size sliding window of length `s1.length()`.
+- Build the frequency array for `s1`.
+- Build the first window in `s2` using another frequency array.
+- Compare both frequency arrays.
+- Slide the window:
+  - Remove the left character.
+  - Add the right character.
+  - Update the window frequency array.
+  - Compare both frequency arrays.
+- If the frequency arrays match, return `true`.
+- If no window matches, return `false`.
+
+## Complexity
+Time: O(n),
+Space: O(1)

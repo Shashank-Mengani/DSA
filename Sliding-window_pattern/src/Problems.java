@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Problems {
@@ -14,8 +16,12 @@ public class Problems {
 //        String s = "xyzzaz";
 //        System.out.println(countGoodSubstrings(s));
 
-        String s = "pwwkew";
-        System.out.println(lengthOfLongestSubstring(s));
+//        String s = "pwwkew";
+//        System.out.println(lengthOfLongestSubstring(s));
+
+        String s1 = "ab";
+        String s2 = "eidbaooo";
+        System.out.println(checkInclusion(s1, s2));
     }
 
     //https://leetcode.com/problems/maximum-average-subarray-i/description/I
@@ -114,26 +120,90 @@ public class Problems {
     }
 
     //https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
-    public static int lengthOfLongestSubstring(String s){
+    public static int lengthOfLongestSubstring(String s) {
+//        int maxLen = 0;
+//        int left = 0;
+//
+//        HashSet<Character> set = new HashSet<>();
+//
+//        //Expand the window
+//        for (int right = 0; right < s.length(); right++){
+//
+//            //Shrink while the window is invalid
+//            while (set.contains(s.charAt(right))){
+//                set.remove(s.charAt(left));
+//                left++;
+//            }
+//            //Add the current character
+//            set.add(s.charAt(right));
+//
+//            //Update the answer (window is valid)
+//            maxLen = Math.max(maxLen, right - left + 1);
+//        }
+//        return maxLen;
+
         int maxLen = 0;
         int left = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
 
-        HashSet<Character> set = new HashSet<>();
+        for (int right = 0; right < s.length(); right++) {
+            char ch = s.charAt(right);
 
-        //Expand the window
-        for (int right = 0; right < s.length(); right++){
-
-            //Shrink while the window is invalid
-            while (set.contains(s.charAt(right))){
-                set.remove(s.charAt(left));
-                left++;
+            // If character is already present, move left pointer
+            if (map.containsKey(ch)) {
+                left = Math.max(left, map.get(ch) + 1);
             }
-            //Add the current character
-            set.add(s.charAt(right));
+            // Store/update latest index of character
+            map.put(ch, right);
 
-            //Update the answer (window is valid)
+            // Update answer
             maxLen = Math.max(maxLen, right - left + 1);
         }
         return maxLen;
     }
-}
+
+    //https://leetcode.com/problems/permutation-in-string/description/?envType=problem-list-v2&envId=sliding-window
+    public static boolean checkInclusion(String s1, String s2){
+
+        if (s1.length() > s2.length()) {
+            return false;
+        }
+
+        //freq Array
+        int[] freqS1 = new int[26];
+        int[] freqWindow = new int[26];
+
+        // 1. Build freqS1
+        for (int i = 0; i < s1.length(); i++) {
+            int idx = s1.charAt(i) - 'a';
+            freqS1[idx]++;
+        }
+
+        // 2. Build first window
+        for (int i = 0; i < s1.length(); i++) {
+            int window = s2.charAt(i) - 'a';
+            freqWindow[window]++;
+        }
+
+        // 3. Compare first window
+        if(Arrays.equals(freqS1, freqWindow)){
+            return true;
+        }
+
+        // 4. Slide the window
+        for (int i = s1.length(); i < s2.length(); i++) {
+           int remove = s2.charAt(i - s1.length()) - 'a';
+           freqWindow[remove]--;
+
+           int add = s2.charAt(i) - 'a';
+           freqWindow[add]++;
+
+            // 5. Compare each window
+           if (Arrays.equals(freqS1, freqWindow)){
+               return true;
+           }
+        }
+        // 6. Return false
+        return false;
+    }
+    }
