@@ -39,3 +39,19 @@ Maintain a window of size 3.
 ## Complexity
 Time: O(n),
 Space: O(1)
+
+# 4. Longest Substring Without Repeating Characters
+## Idea
+Maintain a variable-size sliding window.
+- Expand the window by adding the right character.
+- Use a frequency array/map to track characters in the current window.
+- If a duplicate character appears, shrink the window:
+  - Remove the left character.
+  - Update its frequency.
+  - Continue shrinking until all characters are unique.
+- Track the maximum window length.
+- Update the answer with the current valid window size.
+
+## Complexity
+Time: O(n),
+Space: O(1) (using frequency array of size 128)
