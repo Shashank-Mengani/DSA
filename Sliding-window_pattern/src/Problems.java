@@ -19,9 +19,12 @@ public class Problems {
 //        String s = "pwwkew";
 //        System.out.println(lengthOfLongestSubstring(s));
 
-        String s1 = "ab";
-        String s2 = "eidbaooo";
-        System.out.println(checkInclusion(s1, s2));
+//        String s1 = "ab";
+//        String s2 = "eidbaooo";
+//        System.out.println(checkInclusion(s1, s2));
+        int target = 10;
+        int[] nums = {2,1,5,1,5,3};
+        System.out.println(minSubArrayLen(target, nums));
     }
 
     //https://leetcode.com/problems/maximum-average-subarray-i/description/I
@@ -192,9 +195,10 @@ public class Problems {
 
         // 4. Slide the window
         for (int i = s1.length(); i < s2.length(); i++) {
+            //Shrink
            int remove = s2.charAt(i - s1.length()) - 'a';
            freqWindow[remove]--;
-
+            //Expand
            int add = s2.charAt(i) - 'a';
            freqWindow[add]++;
 
@@ -205,5 +209,26 @@ public class Problems {
         }
         // 6. Return false
         return false;
+    }
+
+    //https://leetcode.com/problems/minimum-size-subarray-sum/description/
+    public static int minSubArrayLen(int target, int[] nums){
+
+        int minLen = Integer.MAX_VALUE;
+        int sum = 0;
+        int left = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            //Expand
+            sum += nums[right];
+
+            // Shrink while the window is valid
+            while (sum >= target){
+                minLen = Math.min(minLen, right - left + 1);
+                sum -= nums[left];
+                left++;
+            }
+        }
+        return minLen == Integer.MAX_VALUE ? 0 : minLen;
     }
     }

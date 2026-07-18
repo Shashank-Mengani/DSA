@@ -73,3 +73,16 @@ Maintain a fixed-size sliding window of length `s1.length()`.
 ## Complexity
 Time: O(n),
 Space: O(1)
+
+# 6. Minimum Size Subarray Sum
+## Idea
+Maintain a sliding window.
+- Expand the window by adding the next element.
+- Once the window sum is greater than or equal to `target`, update the minimum window length.
+- Remove the leftmost element while the window is still valid.
+- Repeat until the end of the array.
+- Return the minimum window length, or `0` if no valid subarray exists.
+
+## Complexity
+Time: O(n),  
+Space: O(1)
