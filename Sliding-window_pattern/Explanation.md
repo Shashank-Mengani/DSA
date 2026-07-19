@@ -86,3 +86,20 @@ Maintain a sliding window.
 ## Complexity
 Time: O(n),  
 Space: O(1)
+
+# 7. Longest Repeating Character Replacement
+## Idea
+Maintain a variable-size sliding window.
+- Expand the window by adding the next character and update its frequency.
+- Track the maximum frequency of any character inside the current window.
+- The window is valid if:
+  - window size - max frequency <= k
+    because the remaining characters are the ones we need to replace.
+- If the window becomes invalid, move the left pointer and remove characters until the window becomes valid again.
+- After making the window valid, update the maximum window length.
+- Repeat until the end of the string.
+- Return the maximum length found.
+
+## Complexity
+Time: O(n),  
+Space: O(1)  // fixed frequency array of size 26

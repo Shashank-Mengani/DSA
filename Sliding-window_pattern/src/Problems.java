@@ -22,9 +22,14 @@ public class Problems {
 //        String s1 = "ab";
 //        String s2 = "eidbaooo";
 //        System.out.println(checkInclusion(s1, s2));
-        int target = 10;
-        int[] nums = {2,1,5,1,5,3};
-        System.out.println(minSubArrayLen(target, nums));
+
+//        int target = 10;
+//        int[] nums = {2,1,5,1,5,3};
+//        System.out.println(minSubArrayLen(target, nums));
+
+        String s = "AABABBA";
+        int k = 1;
+        System.out.println(characterReplacement(s, k));
     }
 
     //https://leetcode.com/problems/maximum-average-subarray-i/description/I
@@ -230,5 +235,38 @@ public class Problems {
             }
         }
         return minLen == Integer.MAX_VALUE ? 0 : minLen;
+    }
+
+    //https://leetcode.com/problems/longest-repeating-character-replacement/description/
+    public static int characterReplacement(String s, int k){
+
+        //Initialize...
+        int[] freq = new int[26];
+        int maxFreq = 0;
+        int left = 0;
+        int ans = 0;
+
+       //Expand the window...
+        for (int right = 0; right < s.length(); right++) {
+
+            int ch = s.charAt(right) - 'A';
+            //Update frequency
+            freq[ch]++;
+
+            //Update maxFreq
+            maxFreq = Math.max(maxFreq, freq[ch]);
+
+            //Shrink if invalid
+            while ((right - left + 1) - maxFreq > k){
+                int remove = s.charAt(left) - 'A';
+                freq[remove]--;
+                left++;
+            }
+
+            //update answer
+            ans = Math.max(ans, right - left + 1);
+        }
+        //return answer
+        return ans;
     }
     }
