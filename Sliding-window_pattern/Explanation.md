@@ -74,6 +74,7 @@ Maintain a fixed-size sliding window of length `s1.length()`.
 Time: O(n),
 Space: O(1)
 
+
 # 6. Minimum Size Subarray Sum
 ## Idea
 Maintain a sliding window.
@@ -103,3 +104,15 @@ Maintain a variable-size sliding window.
 ## Complexity
 Time: O(n),  
 Space: O(1)  // fixed frequency array of size 26
+
+# 8. Max Consecutive Ones
+## Idea
+Maintain a running count of consecutive `1`s.
+- Traverse the array once.
+- If the current number is `1`, increase the count.
+- If the current number is `0`, reset the count because the streak breaks.
+- Track the maximum count of consecutive `1`s.
+
+## Complexity
+Time: O(n), 
+Space: O(1)

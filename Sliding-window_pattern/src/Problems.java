@@ -27,9 +27,11 @@ public class Problems {
 //        int[] nums = {2,1,5,1,5,3};
 //        System.out.println(minSubArrayLen(target, nums));
 
-        String s = "AABABBA";
-        int k = 1;
-        System.out.println(characterReplacement(s, k));
+//        String s = "AABABBA";
+//        int k = 1;
+//        System.out.println(characterReplacement(s, k));
+        int[] num = {1, 1, 0, 1, 1, 1};
+        System.out.println(findMaxConsecutiveOnes(num));
     }
 
     //https://leetcode.com/problems/maximum-average-subarray-i/description/I
@@ -268,5 +270,21 @@ public class Problems {
         }
         //return answer
         return ans;
+    }
+
+    //https://leetcode.com/problems/max-consecutive-ones/description/
+    public static int findMaxConsecutiveOnes(int[] nums){
+        int maxCount = 0;
+        int count = 0;
+
+        for (int num: nums) {
+            if (num == 1){
+                count++;
+            } else {
+                count = 0;
+            }
+            maxCount = Math.max(maxCount, count);
+        }
+        return maxCount;
     }
     }
