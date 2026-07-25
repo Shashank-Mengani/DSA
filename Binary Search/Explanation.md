@@ -11,3 +11,17 @@ Maintain two pointers, `start` and `end`.
 ## Complexity
 Time: O(log n),
 Space: O(1)
+
+# 2. Search Insert Position
+## Idea
+Maintain two pointers, `start` and `end`.
+- Calculate the middle index.
+  - If the middle element is the target, return its index.
+  - If the target is greater, move `start` to `mid + 1`.
+  - If the target is smaller, move `end` to `mid - 1`.
+  - Continue until the search space becomes empty.
+  - Return `start`, which is the correct position to insert the target while keeping the array sorted.
+
+## Complexity
+Time: O(log n),
+Space: O(1)
