@@ -5,9 +5,12 @@ public class Problems {
 //        int target = 9;
 //        System.out.println(search(nums, target));
 
-        int[] nums = {1,3,5,6};
-        int target = 2;
-        System.out.println(searchInsert(nums, target));
+//        int[] nums = {1,3,5,6};
+//        int target = 2;
+//        System.out.println(searchInsert(nums, target));
+
+        int x = 9;
+        System.out.println(mySqrt(x));
     }
 
     //https://leetcode.com/problems/binary-search/?envType=problem-list-v2&envId=binary-search
@@ -45,4 +48,24 @@ public class Problems {
         return s;
     }
 
+    //https://leetcode.com/problems/sqrtx/submissions/2082253363/?envType=problem-list-v2&envId=binary-search
+    static int mySqrt(int x) {
+        if (x < 2) {
+            return x;
+        }
+        long s = 0;
+        long e = x;
+
+        while (s <= e) {
+            long mid = s + (e - s) / 2;
+            if (mid * mid == x) {
+                return (int) mid;
+            } else if (mid * mid < x) {
+                s = mid + 1;
+            } else {
+                e = mid - 1;
+            }
+        }
+        return (int) e;
+    }
 }
