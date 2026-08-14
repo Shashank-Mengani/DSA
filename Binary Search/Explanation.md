@@ -39,3 +39,16 @@ Maintain two pointers, `start` and `end`.
 ## Complexity
 Time: O(log n),
 Space: O(1)
+
+# 4.Lower Bound
+## Idea
+Maintain two pointers, `start` and `end`.
+- Calculate the middle index.
+  - If the middle element is greater than or equal to the target, move end to mid.
+  - If the middle element is smaller than the target, move start to mid + 1.
+  - Repeat until start and end meet.
+  - Return start, which is the first index where the element is greater than or equal to the target.
+  
+## Complexity
+Time: O(log n),
+Space: O(1)

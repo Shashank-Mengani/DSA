@@ -9,8 +9,16 @@ public class Problems {
 //        int target = 2;
 //        System.out.println(searchInsert(nums, target));
 
-        int x = 9;
-        System.out.println(mySqrt(x));
+//        int x = 9;
+//        System.out.println(mySqrt(x));
+
+//        int[] nums = {1, 2, 2, 2, 4, 5, 7};
+//        int target = 2;
+//        System.out.println(lowerBound(nums, target));
+
+        int[] num = {1, 2, 2, 2, 4, 5, 7};
+        int target = 3;
+        System.out.println(upperBound(num, target));
     }
 
     //https://leetcode.com/problems/binary-search/?envType=problem-list-v2&envId=binary-search
@@ -68,4 +76,21 @@ public class Problems {
         }
         return (int) e;
     }
+
+    //https://www.geeksforgeeks.org/problems/implement-lower-bound/1
+    public static int lowerBound(int[] nums, int target){
+        int s=0;
+        int e=nums.length;
+        while (s<e){
+            int mid = s + (e - s) / 2;
+            if(nums[mid] >= target){
+                e = mid;
+            } else {
+                s = mid + 1;
+            }
+        }
+        return s;
+    }
+
+
 }
