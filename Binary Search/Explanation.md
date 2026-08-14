@@ -65,3 +65,16 @@ Maintain two pointers, `start` and `end`.
 # Complexity
 Time: O(log n),
 Space: O(1)
+
+# 6. Find First and Last Position of Element in Sorted Array
+## Idea
+Maintain two pointers, `start` and `end`.
+- Calculate the middle index.
+  - Use lowerBound to find the first index where the element is greater than or equal to the target.
+  - Use upperBound to find the first index where the element is greater than the target.
+  - If the target is not present, return [-1, -1].
+  - Return lowerBound as the first position and upperBound - 1 as the last position.
+
+## Complexity
+Time: O(log n),
+Space: O(1)
