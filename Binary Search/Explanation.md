@@ -78,3 +78,16 @@ Maintain two pointers, `start` and `end`.
 ## Complexity
 Time: O(log n),
 Space: O(1)
+
+# 7. Find Minimum in Rotated Sorted Array
+## Idea
+Maintain two pointers, `start and end`.
+- Calculate the middle index.
+  - If the middle element is greater than the element at end, move start to mid + 1.
+  - Otherwise, move end to mid.
+  - Repeat until start and end point to the same index.
+  - Return the element at start (or end).
+
+## Complexity
+Time: O(log n),
+Space: O(1)

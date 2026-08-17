@@ -20,10 +20,13 @@ public class Problems {
 //        int[] num = {1, 2, 2, 2, 4, 5, 7};
 //        int target = 3;
 //        System.out.println(upperBound(num, target));
+//
+//        int[] nums = {5,7,7,8,8,10};
+//        int target = 8;
+//        System.out.println(Arrays.toString(searchRange(nums, target)));
 
-        int[] nums = {5,7,7,8,8,10};
-        int target = 8;
-        System.out.println(Arrays.toString(searchRange(nums, target)));
+        int[] nums = {3,4,5,1,2};
+        System.out.println(findMin(nums));
     }
 
     //https://leetcode.com/problems/binary-search/?envType=problem-list-v2&envId=binary-search
@@ -159,5 +162,22 @@ public class Problems {
             }
         }
         return s;
+    }
+
+    //https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/?envType=problem-list-v2&envId=binary-search
+    public static int findMin(int[] nums){
+        int s = 0;
+        int e = nums.length - 1;
+
+        while (s < e){
+            int mid = s + (e - s) / 2;
+
+            if (nums[mid] > nums[e]){
+                s = mid + 1;
+            } else {
+                e = mid;
+            }
+        }
+        return nums[s];
     }
 }
