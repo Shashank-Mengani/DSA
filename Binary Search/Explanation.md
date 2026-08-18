@@ -110,3 +110,23 @@ Maintain two pointers, `start and end`.
 ## Complexity
 Time: O(log n)
 Space: O(1)
+
+## 9. Koko Eating Bananas
+## Idea
+Maintain two pointers, `start and end`.
+  - start is the minimum possible eating speed, which is 1.
+  - end is the maximum pile size.
+  - Calculate the middle value, which represents Koko's eating speed.
+  - Calculate the total hours needed to finish all piles at this speed.
+  - `If the required hours are within h`:
+  - This speed is possible.
+  - Try a smaller speed by moving end to mid.
+  - `Otherwise`:
+  - This speed is too slow.
+  - Increase the speed by moving start to mid + 1.
+  - Repeat until start and end point to the same speed.
+  - Return start as the minimum eating speed.
+## Complexity
+Time: O(n log m),
+Space: O(1)
+`Where n is the number of piles and m is the maximum pile size.`

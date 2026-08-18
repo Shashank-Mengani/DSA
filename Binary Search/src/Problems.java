@@ -28,9 +28,13 @@ public class Problems {
 //        int[] nums = {3,4,5,1,2};
 //        System.out.println(findMin(nums));
 
-        int[] nums = {4,5,6,7,0,1,2};
-        int target = 0;
-        System.out.println(search(nums, target));
+//        int[] nums = {4,5,6,7,0,1,2};
+//        int target = 0;
+//        System.out.println(search(nums, target));
+
+        int[] piles = {30,11,23,4,20};
+        int h = 5;
+        System.out.println(minEatingSpeed(piles, h));
     }
 
     //https://leetcode.com/problems/binary-search/?envType=problem-list-v2&envId=binary-search
@@ -211,5 +215,30 @@ public class Problems {
             }
         }
         return -1;
+    }
+
+    //https://leetcode.com/problems/koko-eating-bananas/?envType=problem-list-v2&envId=binary-search
+    public static int minEatingSpeed(int[] piles, int h){
+        int s = 0;
+        int e = 0;
+        for (int pile: piles){
+            e = Math.max(e, pile);
+        }
+
+        while (s < e){
+            int mid = s + (e - s) / 2;
+            int requiredHrs = 0;
+
+            for (int pile: piles) {
+                requiredHrs += (pile + mid - 1) / mid;
+            }
+
+            if(requiredHrs <= h){
+                e = mid;
+            } else{
+                s = mid + 1;
+            }
+        }
+        return s;
     }
 }
