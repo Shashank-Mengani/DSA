@@ -91,3 +91,22 @@ Maintain two pointers, `start and end`.
 ## Complexity
 Time: O(log n),
 Space: O(1)
+
+## 8. Search in Rotated Sorted Array
+## Idea
+Maintain two pointers, `start and end`.
+- Calculate the middle index.
+  - If the middle element is the target, return its index.
+  - Check which half of the array is sorted:
+  - If the left element is smaller than or equal to the middle element, the left half is sorted.
+  - If the target lies between the left element and the middle element, move end to mid - 1.
+  - Otherwise, move start to mid + 1.
+  - Otherwise, the right half is sorted.
+  - If the target lies between the middle element and the right element, move start to mid + 1.
+  - Otherwise, move end to mid - 1.
+  - Repeat until the target is found or the search space becomes empty.
+  - Return -1 if the target is not found.
+
+## Complexity
+Time: O(log n)
+Space: O(1)
