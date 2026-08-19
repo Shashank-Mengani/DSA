@@ -36,9 +36,13 @@ public class Problems {
 //        int h = 5;
 //        System.out.println(minEatingSpeed(piles, h));
 
-        int[] weights = {1,2,3,4,5,6,7,8,9,10};
-        int days = 5;
-        System.out.println(shipWithinDays(weights, days));
+//        int[] weights = {1,2,3,4,5,6,7,8,9,10};
+//        int days = 5;
+//        System.out.println(shipWithinDays(weights, days));
+
+        int[] nums = {7,2,5,10,8};
+        int k = 2;
+        System.out.println(splitArray(nums, k));
     }
 
     //https://leetcode.com/problems/binary-search/?envType=problem-list-v2&envId=binary-search
@@ -275,6 +279,38 @@ public class Problems {
             if(daysUsed <= days){
                 e = mid;
             } else{
+                s = mid + 1;
+            }
+        }
+        return s;
+    }
+
+    //https://leetcode.com/problems/split-array-largest-sum/?envType=problem-list-v2&envId=binary-search
+    public static int splitArray(int[] nums, int k){
+        int s = 0;
+        int e = 0;
+        for (int num: nums){
+            s = Math.max(s, num);
+            e += num;
+        }
+
+        while (s < e){
+            int mid = s + (e - s) / 2;
+            int subArrays = 1;
+            int currentSum = 0;
+
+            for (int num: nums){
+                if (currentSum + num <= mid){
+                    currentSum += num;
+                } else {
+                    subArrays++;
+                    currentSum = num;
+                }
+            }
+
+            if (subArrays <= k){
+                e = mid;
+            } else {
                 s = mid + 1;
             }
         }

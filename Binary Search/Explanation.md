@@ -152,3 +152,26 @@ Maintain two pointers, `start and end`.
 Time:  O(n log(sum(weights))),
 Space: O(1)
 `Where n is the number of packages and S is the sum of all package weights`.
+
+## 11. Split Array Largest Sum
+## Idea
+Maintain two pointers, `start and end`.
+  - start is the minimum possible largest subArray sum, which is the maximum value in nums.
+  - end is the maximum possible largest subArray sum, which is the sum of all values in nums.
+  - Calculate the middle value, which represents the maximum allowed sum for each subarray.
+  - For this value, split the array into contiguous subArrays while keeping each subarray's sum <= mid.
+  - Maintain currSum to track the sum of the current subArray.
+  - Maintain subArrays to track how many subArrays are needed.
+  - If subArrays <= k:
+    - This maximum sum is possible.
+    - Try a smaller maximum sum by moving end to mid.
+  - Otherwise:
+    - This maximum sum is too small.
+    - We need more than k subArrays, so increase the allowed sum by moving start to mid + 1.
+    - Repeat until start and end point to the same value.
+    - Return start as the minimum possible largest subArray sum.
+
+## Complexity
+O(n log(sum(nums))),
+Space: O(1)
+`Where n is the number of elements and S is the sum of all elements in nums`.
