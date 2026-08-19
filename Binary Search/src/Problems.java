@@ -32,9 +32,13 @@ public class Problems {
 //        int target = 0;
 //        System.out.println(search(nums, target));
 
-        int[] piles = {30,11,23,4,20};
-        int h = 5;
-        System.out.println(minEatingSpeed(piles, h));
+//        int[] piles = {30,11,23,4,20};
+//        int h = 5;
+//        System.out.println(minEatingSpeed(piles, h));
+
+        int[] weights = {1,2,3,4,5,6,7,8,9,10};
+        int days = 5;
+        System.out.println(shipWithinDays(weights, days));
     }
 
     //https://leetcode.com/problems/binary-search/?envType=problem-list-v2&envId=binary-search
@@ -234,6 +238,41 @@ public class Problems {
             }
 
             if(requiredHrs <= h){
+                e = mid;
+            } else{
+                s = mid + 1;
+            }
+        }
+        return s;
+    }
+
+    //https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/submissions/2112938580/?envType=problem-list-v2&envId=binary-search
+    public static int shipWithinDays(int[] weights, int days){
+        int s = 1;
+        for (int weight: weights){
+            s = Math.max(s, weight);
+        }
+
+        int e = 0;
+        for (int weight: weights){
+            e += weight;
+        }
+
+        while (s < e){
+            int mid = s + (e - s) / 2;
+            int daysUsed = 1;
+            int currentLoad = 0;
+
+            for (int weight: weights){
+                if (currentLoad + weight > mid){
+                    daysUsed++;
+                    currentLoad = weight;
+                } else {
+                    currentLoad += weight;
+                }
+            }
+
+            if(daysUsed <= days){
                 e = mid;
             } else{
                 s = mid + 1;

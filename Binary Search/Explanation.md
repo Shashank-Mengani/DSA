@@ -130,3 +130,25 @@ Maintain two pointers, `start and end`.
 Time: O(n log m),
 Space: O(1)
 `Where n is the number of piles and m is the maximum pile size.`
+
+## 10. Capacity to Ship Packages Within D Days
+## Idea
+Maintain two pointers, `start and end`.
+  - start is the minimum possible shipping capacity, which is the maximum package weight.
+  - end is the maximum possible shipping capacity, which is the sum of all package weights.
+  - Calculate the middle value, which represents the ship's capacity.
+  - For this capacity, distribute the packages in order across days.
+  - Maintain currentLoad to track the weight loaded on the current day.
+  - Maintain daysUsed to track how many days are needed.
+  - If daysUsed <= days:
+    - This capacity is possible.
+    - Try a smaller capacity by moving end to mid.
+  - Otherwise:
+    - This capacity is too small.
+    - Increase the capacity by moving start to mid + 1.
+  - Repeat until start and end point to the same capacity.
+  - Return start as the minimum shipping capacity.
+## Complexity
+Time: O(n log S),
+Space: O(1)
+`Where n is the number of packages and S is the sum of all package weights`.
