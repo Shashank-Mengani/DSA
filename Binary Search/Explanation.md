@@ -149,6 +149,6 @@ Maintain two pointers, `start and end`.
   - Repeat until start and end point to the same capacity.
   - Return start as the minimum shipping capacity.
 ## Complexity
-Time: O(n log S),
+Time:  O(n log(sum(weights))),
 Space: O(1)
 `Where n is the number of packages and S is the sum of all package weights`.
