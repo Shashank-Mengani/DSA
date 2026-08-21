@@ -116,3 +116,19 @@ Maintain a running count of consecutive `1`s.
 ## Complexity
 Time: O(n), 
 Space: O(1)
+
+## 904. Fruit Into Baskets
+## Idea
+Use a variable-size sliding window to find the longest subArray with at most 2 distinct fruit types.
+- Expand using right and update freq.
+- If a new fruit type appears, increment distinct.
+- If distinct > 2, shrink from left:
+  - Decrease its frequency.
+  - If frequency becomes 0, decrement distinct.
+  - Move left.
+- Update the maximum window length using right - left + 1.
+- Return the maximum length.
+
+## Complexity
+Time: O(n),
+Space: O(1)

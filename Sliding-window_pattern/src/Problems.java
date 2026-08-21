@@ -30,8 +30,12 @@ public class Problems {
 //        String s = "AABABBA";
 //        int k = 1;
 //        System.out.println(characterReplacement(s, k));
-        int[] num = {1, 1, 0, 1, 1, 1};
-        System.out.println(findMaxConsecutiveOnes(num));
+
+//        int[] num = {1, 1, 0, 1, 1, 1};
+//        System.out.println(findMaxConsecutiveOnes(num));
+
+        int[] fruits = {1,2,3,2,2};
+        System.out.println(totalFruits(fruits));
     }
 
     //https://leetcode.com/problems/maximum-average-subarray-i/description/I
@@ -286,5 +290,32 @@ public class Problems {
             maxCount = Math.max(maxCount, count);
         }
         return maxCount;
+    }
+
+    //https://leetcode.com/problems/fruit-into-baskets/
+    public static int totalFruits(int[] fruits){
+        int[] freq = new int[100001];
+        int distinct = 0;
+        int left = 0;
+        int max = 0;
+
+        for (int right = 0; right < fruits.length; right++){
+
+            if (freq[fruits[right]] == 0){
+                distinct++;
+            }
+            freq[fruits[right]]++;
+
+            while (distinct > 2){
+                freq[fruits[left]]--;
+
+                if (freq[fruits[left]] == 0){
+                    distinct--;
+                }
+                left++;
+            }
+            max = Math.max(max, right - left + 1);
+        }
+        return max;
     }
     }
