@@ -117,7 +117,20 @@ Maintain a running count of consecutive `1`s.
 Time: O(n), 
 Space: O(1)
 
-## 904. Fruit Into Baskets
+## 9. Max Consecutive Ones III
+## Idea
+Maintain a sliding window with at most k zeros.
+- Traverse the array using right.
+- If the current number is 0, increase the zero count.
+- If the zero count becomes greater than k, move left forward until the window has at most k zeros.
+- Track the maximum length of the valid window.
+- This gives the longest sequence of 1s after flipping at most k zeros.
+
+## Complexity
+Time: O(n),
+Space: O(1)
+
+## 10. Fruit Into Baskets
 ## Idea
 Use a variable-size sliding window to find the longest subArray with at most 2 distinct fruit types.
 - Expand using right and update freq.
